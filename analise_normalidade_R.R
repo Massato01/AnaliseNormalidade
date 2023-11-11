@@ -39,10 +39,10 @@ mediana_x <- median(X) # 7.9
 mediana_y <- median(y) # 0.26
 # ---------------------------------------------------------------------------------------------------
 # Histograma de Fixed Acidity
-hist(X, main = "Histograma de Fixed Acidity", xlab = "x", ylab = "Frequência")
+hist(X, main = "Histograma de Fixed Acidity", xlab = "x", ylab = "Frequência", col = 'royalblue')
 
 # Histograma de Citric Acid
-hist(y, main = "Histograma de Citric Acid", xlab = "y", ylab = "Frequência")
+hist(y, main = "Histograma de Citric Acid", xlab = "y", ylab = "Frequência", col = 'royalblue')
 # ---------------------------------------------------------------------------------------------------
 # Boxplot de Fixed Acidity
 boxplot(X, main = "Boxplot de Fixed Acidity", ylab = "Fixed Acidity", col = "royalblue")
@@ -66,8 +66,15 @@ print(teste_normal_y)
 
 # Gráfico de densidade junto com o histograma de Fixed Acidity
 ggplot(data = df, aes(x = X)) +
-geom_histogram(aes(y = after_stat(density)), fill = "royalblue", color = "black", binwidth = 0.5) +
-geom_density(alpha = 0.2, color = "red")
+  geom_histogram(aes(y = after_stat(density)), fill = "royalblue", color = "black", binwidth = 0.5) +
+  geom_density(alpha = 0.2, color = "red") +
+  labs(x = "Fixed Acidity", y = "Density")
+
+# Gráfico de densidade junto com o histograma de Citric Acid
+ggplot(data = df, aes(x = y)) +
+  geom_histogram(aes(y = after_stat(density)), fill = "royalblue", color = "black", binwidth = 0.1) +
+  geom_density(alpha = 0.2, color = "red") +
+  labs(x = "Citric Acid", y = "Density")
 # ---------------------------------------------------------------------------------------------------
 # Regressão Linear Simples de Fixed Acidity e Citric Acid
 modelo <- lm(y ~ X)
